@@ -317,6 +317,17 @@ describe Factory do
         @factory.build_class.should == @class
       end
     end
+
+    describe "when defined with a custom class name that includes a namespace" do
+      before do
+        @class   = Admin::Secret
+        @factory = Factory.new(:author, :class => 'Admin::Secret')
+      end
+
+      it "should use the specified class as the build class" do
+        @factory.build_class.should == @class
+      end
+    end
   end
 
   describe "a factory with a name ending in s" do

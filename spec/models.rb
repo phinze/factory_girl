@@ -22,6 +22,10 @@ class CreateSchema < ActiveRecord::Migration
       t.string  :name  
       t.integer :owner_id
     end
+
+    create_table :admin_secrets, :force => true do |t|
+      t.string  :secret  
+    end
   end
 end
 
@@ -40,4 +44,10 @@ end
 class Post < ActiveRecord::Base
   validates_presence_of :name, :author_id
   belongs_to :author, :class_name => 'User'
+end
+
+module Admin
+  class Secret < ActiveRecord::Base
+    validates_presence_of :secret
+  end
 end
